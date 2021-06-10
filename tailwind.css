@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+   .valid::before {
+      content: "";
+      vertical-align: -3px;
+      background-image: url("assets/check.svg");
+      background-size: 16px 16px;
+      @apply inline-block h-4 w-4;
+   }
+   .invalid::before {
+      content: "";
+      vertical-align: -3px;
+      background-image: url("assets/cross.svg");
+      background-size: 16px 16px;
+      @apply inline-block h-4 w-4;
+   }
+}

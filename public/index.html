@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Password Validation</title>
+      <link rel="stylesheet" href="styles.css" />
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+   </head>
+   <body class="antialiased text-gray-800">
+      <div class="min-h-screen max-w-md mx-auto flex items-center justify-center">
+         <div class="p-12 bg-gray-50 rounded-lg shadow">
+            <h1 class="font-bold text-3xl">Set new password</h1>
+            <form action="" class="mt-6" x-data="{password: ''}">
+               <input
+                  type="text"
+                  placeholder="Password"
+                  x-model="password"
+                  class="w-full px-5 py-2 rounded-lg border border-gray-200 hover:border-gray-400 focus:border-gray-400 shadow outline-none"
+               />
+               <ul class="mt-4 ml-2 text-sm text-gray-500 space-y-2">
+                  <li
+                     :class="{
+								'text-red-600 font-medium invalid':password.length > 0 && password.length < 8,
+								'text-green-600 font-medium valid':password.length >= 8
+							}"
+                  >
+                     Minimum 8 characters
+                  </li>
+                  <li
+                     :class="{
+								'text-red-600 font-medium invalid':password.length > 0 && !/[A-Z]/.test(password),
+								'text-green-600 font-medium valid':/[A-Z]/.test(password)
+							}"
+                  >
+                     At least 1 uppercase letter
+                  </li>
+                  <li
+                     :class="{
+								'text-red-600 font-medium invalid':password.length > 0 && !/[0-9]/.test(password),
+								'text-green-600 font-medium valid':/[0-9]/.test(password)
+							}"
+                  >
+                     At least 1 number
+                  </li>
+               </ul>
+               <button
+                  class="
+                     mt-7
+                     px-5
+                     py-3
+                     bg-cyan-600
+                     text-white
+                     rounded-lg
+                     shadow
+                     hover:bg-cyan-700
+                     focus:bg-cyan-700
+                     disabled:bg-gray-300
+                     disabled:cursor-default
+                     disabled:shadow-none
+                  "
+                  :disabled="
+							!(password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password))
+						"
+               >
+                  Save changes
+               </button>
+            </form>
+         </div>
+      </div>
+   </body>
+</html>
